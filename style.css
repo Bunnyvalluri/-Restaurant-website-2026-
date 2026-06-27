@@ -507,21 +507,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .about-img.main-img {
-    grid-column: 1 / 9;
-    grid-row: 1 / 10;
+    grid-column: 1 / 13;
+    grid-row: 1 / 13;
     width: 100%;
     height: 100%;
     z-index: 2;
     border: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-.about-img.secondary-img {
-    grid-column: 5 / 13;
-    grid-row: 4 / 13;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
-    border: 4px solid var(--bg-white);
 }
 
 .image-frame-gold {
@@ -537,11 +528,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .about-image-wrapper:hover .main-img {
-    transform: translate(-10px, -5px) scale(1.02);
-}
-
-.about-image-wrapper:hover .secondary-img {
-    transform: translate(10px, 5px) scale(1.02);
+    transform: scale(1.02);
 }
 
 .about-image-wrapper:hover .image-frame-gold {
