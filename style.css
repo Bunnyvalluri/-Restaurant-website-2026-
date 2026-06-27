@@ -592,6 +592,7 @@ h1 em, h2 em, h3 em {
     color: var(--luxury-gold);
     font-size: 0.85rem;
     letter-spacing: 2px;
+    white-space: nowrap;
 }
 
 .badge-text {
@@ -2128,6 +2129,40 @@ h1 em, h2 em, h3 em {
    Mobile-Only Styles (max-width: 767px)
    ========================================== */
 @media screen and (max-width: 767px) {
+
+    /* Header layout fixes */
+    :root {
+        --header-height: 70px;
+    }
+    
+    .main-header.scrolled {
+        height: 60px;
+    }
+
+    .header-reserve-btn {
+        display: none;
+    }
+
+    /* Award Badge stacked layout */
+    .hero-award-badge {
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px 18px;
+        border-radius: 20px;
+        text-align: center;
+    }
+    
+    .badge-text {
+        font-size: 0.68rem;
+        letter-spacing: 1.5px;
+        line-height: 1.4;
+    }
+    
+    /* Gallery grid fixes - prevent empty gaps on mobile */
+    .gallery-tall, .gallery-wide {
+        grid-row: auto;
+        grid-column: auto;
+    }
 
     /* Stats Bar scroll flow */
     .stats-container {
