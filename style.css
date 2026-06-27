@@ -1133,6 +1133,20 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-muted);
 }
 
+.footer-credit-link {
+    color: var(--gold-accent);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    border-bottom: 1px solid transparent;
+}
+
+.footer-credit-link:hover {
+    color: var(--text-light);
+    border-bottom-color: var(--gold-accent);
+}
+
 /* 11. Animations */
 @keyframes fadeIn {
     from {
