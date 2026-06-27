@@ -15,6 +15,10 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Preload Critical Above-the-Fold Assets -->
+    <link rel="preload" href="images/hero.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="images/chef.webp" as="image" fetchpriority="high">
 </head>
 <body class="luxury-theme">
 
@@ -99,7 +103,7 @@
                     <div class="about-image-wrapper reveal-on-scroll">
                         <div class="image-frame-gold"></div>
                         <div class="image-collage">
-                            <img src="images/chef.png" alt="Executive Chef Marcus Vance plating signature main course in the kitchen" class="about-img main-img" loading="lazy">
+                            <img src="images/chef.webp" alt="Executive Chef Marcus Vance plating signature main course in the kitchen" class="about-img main-img" fetchpriority="high">
                         </div>
                         <div class="experience-badge">
                             <span class="years">15+</span>
@@ -142,7 +146,7 @@
                         <!-- Starters -->
                         <article class="menu-card category-starter">
                             <div class="menu-card-image-wrapper">
-                                <img src="images/menu_garlic_bread.png" alt="Flame & Fork Garlic Bread Starter Platter" class="menu-card-image" loading="lazy">
+                                <img src="images/menu_garlic_bread.webp" alt="Flame & Fork Garlic Bread Starter Platter" class="menu-card-image" loading="lazy">
                             </div>
                             <div class="menu-card-body">
                                 <div class="menu-card-header">
@@ -158,7 +162,7 @@
 
                         <article class="menu-card category-starter">
                             <div class="menu-card-image-wrapper">
-                                <img src="images/menu_tomato_soup.png" alt="Bowl of hot creamy tomato soup starter" class="menu-card-image" loading="lazy">
+                                <img src="images/menu_tomato_soup.webp" alt="Bowl of hot creamy tomato soup starter" class="menu-card-image" loading="lazy">
                             </div>
                             <div class="menu-card-body">
                                 <div class="menu-card-header">
@@ -174,7 +178,7 @@
 
                         <article class="menu-card category-starter">
                             <div class="menu-card-image-wrapper">
-                                <img src="images/menu_crispy_fries.png" alt="Golden crispy rosemary fries" class="menu-card-image" loading="lazy">
+                                <img src="images/menu_crispy_fries.webp" alt="Golden crispy rosemary fries" class="menu-card-image" loading="lazy">
                             </div>
                             <div class="menu-card-body">
                                 <div class="menu-card-header">
@@ -191,7 +195,7 @@
                         <!-- Main Courses -->
                         <article class="menu-card category-main">
                             <div class="menu-card-image-wrapper">
-                                <img src="images/menu_grilled_chicken.png" alt="Juicy herb-grilled chicken main course platter" class="menu-card-image" loading="lazy">
+                                <img src="images/menu_grilled_chicken.webp" alt="Juicy herb-grilled chicken main course platter" class="menu-card-image" loading="lazy">
                             </div>
                             <div class="menu-card-body">
                                 <div class="menu-card-header">
@@ -207,7 +211,7 @@
 
                         <article class="menu-card category-main">
                             <div class="menu-card-image-wrapper">
-                                <img src="images/menu_paneer_butter.png" alt="Rich paneer butter masala cottage cheese curry" class="menu-card-image" loading="lazy">
+                                <img src="images/menu_paneer_butter.webp" alt="Rich paneer butter masala cottage cheese curry" class="menu-card-image" loading="lazy">
                             </div>
                             <div class="menu-card-body">
                                 <div class="menu-card-header">
@@ -223,7 +227,7 @@
 
                         <article class="menu-card category-main">
                             <div class="menu-card-image-wrapper">
-                                <img src="images/menu_veg_biryani.png" alt="Fragrant vegetable biryani basmati rice" class="menu-card-image" loading="lazy">
+                                <img src="images/menu_veg_biryani.webp" alt="Fragrant vegetable biryani basmati rice" class="menu-card-image" loading="lazy">
                             </div>
                             <div class="menu-card-body">
                                 <div class="menu-card-header">
@@ -240,7 +244,7 @@
                         <!-- Desserts -->
                         <article class="menu-card category-dessert">
                             <div class="menu-card-image-wrapper">
-                                <img src="images/menu_lava_cake.png" alt="Warm molten chocolate lava cake with vanilla gelato" class="menu-card-image" loading="lazy">
+                                <img src="images/menu_lava_cake.webp" alt="Warm molten chocolate lava cake with vanilla gelato" class="menu-card-image" loading="lazy">
                             </div>
                             <div class="menu-card-body">
                                 <div class="menu-card-header">
@@ -256,7 +260,7 @@
 
                         <article class="menu-card category-dessert">
                             <div class="menu-card-image-wrapper">
-                                <img src="images/menu_ice_cream.png" alt="Gelato ice cream sundae dessert" class="menu-card-image" loading="lazy">
+                                <img src="images/menu_ice_cream.webp" alt="Gelato ice cream sundae dessert" class="menu-card-image" loading="lazy">
                             </div>
                             <div class="menu-card-body">
                                 <div class="menu-card-header">
@@ -272,7 +276,7 @@
 
                         <article class="menu-card category-dessert">
                             <div class="menu-card-image-wrapper">
-                                <img src="images/menu_cheesecake.png" alt="Strawberry cheesecake dessert with graham cracker crust" class="menu-card-image" loading="lazy">
+                                <img src="images/menu_cheesecake.webp" alt="Strawberry cheesecake dessert with graham cracker crust" class="menu-card-image" loading="lazy">
                             </div>
                             <div class="menu-card-body">
                                 <div class="menu-card-header">
@@ -304,7 +308,7 @@
                 <div class="gallery-grid reveal-on-scroll">
                     <!-- Gallery Item 1 -->
                     <div class="gallery-item">
-                        <img src="images/gallery1.png" alt="Close-up of toasted gourmet garlic bread appetizer with cherry tomatoes" class="gallery-image" loading="lazy">
+                        <img src="images/gallery1.webp" alt="Close-up of toasted gourmet garlic bread appetizer with cherry tomatoes" class="gallery-image" loading="lazy">
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <svg class="gallery-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2">
@@ -321,7 +325,7 @@
 
                     <!-- Gallery Item 2 -->
                     <div class="gallery-item">
-                        <img src="images/gallery2.png" alt="Exquisitely plated grilled chicken breast main course" class="gallery-image" loading="lazy">
+                        <img src="images/gallery2.webp" alt="Exquisitely plated grilled chicken breast main course" class="gallery-image" loading="lazy">
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <svg class="gallery-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2">
@@ -338,7 +342,7 @@
 
                     <!-- Gallery Item 3 -->
                     <div class="gallery-item">
-                        <img src="images/gallery3.png" alt="Decadent chocolate lava cake dessert with oozing molten chocolate" class="gallery-image" loading="lazy">
+                        <img src="images/gallery3.webp" alt="Decadent chocolate lava cake dessert with oozing molten chocolate" class="gallery-image" loading="lazy">
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <svg class="gallery-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2">
@@ -356,7 +360,7 @@
 
                     <!-- Gallery Item 5 -->
                     <div class="gallery-item">
-                        <img src="images/gallery5.png" alt="Professional chef tossing food with flames in the kitchen" class="gallery-image" loading="lazy">
+                        <img src="images/gallery5.webp" alt="Professional chef tossing food with flames in the kitchen" class="gallery-image" loading="lazy">
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <svg class="gallery-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2">
@@ -373,7 +377,7 @@
 
                     <!-- Gallery Item 6 -->
                     <div class="gallery-item">
-                        <img src="images/gallery6.png" alt="Artisan cocktail being poured with garnish" class="gallery-image" loading="lazy">
+                        <img src="images/gallery6.webp" alt="Artisan cocktail being poured with garnish" class="gallery-image" loading="lazy">
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <svg class="gallery-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2">
@@ -390,7 +394,7 @@
 
                     <!-- Gallery Item 7 -->
                     <div class="gallery-item">
-                        <img src="images/gallery7.png" alt="Thin crust wood fired pizza with fresh mozzarella and basil" class="gallery-image" loading="lazy">
+                        <img src="images/gallery7.webp" alt="Thin crust wood fired pizza with fresh mozzarella and basil" class="gallery-image" loading="lazy">
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <svg class="gallery-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2">
@@ -407,7 +411,7 @@
 
                     <!-- Gallery Item 8 -->
                     <div class="gallery-item">
-                        <img src="images/gallery8.png" alt="Beautiful twilight dining patio decorated with string lights" class="gallery-image" loading="lazy">
+                        <img src="images/gallery8.webp" alt="Beautiful twilight dining patio decorated with string lights" class="gallery-image" loading="lazy">
                         <div class="gallery-overlay">
                             <div class="overlay-content">
                                 <svg class="gallery-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2">

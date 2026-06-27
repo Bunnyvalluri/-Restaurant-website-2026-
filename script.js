@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const revealObserver = new IntersectionObserver(revealCallback, {
         root: null,
-        threshold: 0.1, // Trigger when 10% of the element is visible
-        rootMargin: '0px 0px -50px 0px' // Trigger slightly before the element enters the viewport fully
+        threshold: 0.01, // Trigger as soon as a tiny part of the element enters the margin
+        rootMargin: '0px 0px 100px 0px' // Trigger 100px before the element enters the viewport
     });
 
     revealElements.forEach(element => {
