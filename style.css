@@ -74,6 +74,8 @@ html {
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -84,6 +86,7 @@ body {
     color: var(--luxury-gray);
     background-color: var(--luxury-white);
     overflow-x: hidden;
+    width: 100%;
 }
 
 /* Custom Scrollbar */
@@ -131,7 +134,7 @@ button, input, select, textarea {
     width: 100%;
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: 0 30px;
+    padding: 0 clamp(16px, 4vw, 30px);
 }
 
 /* ==========================================================================
@@ -168,7 +171,7 @@ h1 em, h2 em, h3 em {
 }
 
 .section-title {
-    font-size: 3rem;
+    font-size: clamp(2rem, 6vw, 3rem);
     font-weight: 600;
     margin-bottom: 24px;
     color: var(--luxury-dark);
@@ -330,7 +333,7 @@ h1 em, h2 em, h3 em {
     width: 100%;
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: 0 30px;
+    padding: 0 clamp(16px, 4vw, 30px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -343,13 +346,13 @@ h1 em, h2 em, h3 em {
 }
 
 .logo-icon {
-    width: 44px;
-    height: 44px;
+    width: clamp(34px, 5vw, 44px);
+    height: clamp(34px, 5vw, 44px);
 }
 
 .logo-text {
     font-family: var(--font-display);
-    font-size: 1.65rem;
+    font-size: clamp(1.3rem, 4vw, 1.65rem);
     font-weight: 700;
     color: var(--luxury-white);
     letter-spacing: 1px;
@@ -363,16 +366,16 @@ h1 em, h2 em, h3 em {
 
 .header-reserve-btn {
     display: inline-block;
-    padding: 10px 22px;
+    padding: 10px 18px;
     border: 1px solid var(--luxury-gold);
     color: var(--luxury-gold);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     border-radius: var(--radius-sm);
     margin-left: auto;
-    margin-right: 30px;
+    margin-right: clamp(15px, 3vw, 30px);
 }
 
 .header-reserve-btn:hover {
@@ -380,33 +383,81 @@ h1 em, h2 em, h3 em {
     color: var(--luxury-darker);
 }
 
-/* Navigation Menu */
+/* Checkbox Hack for Hamburger Menu - Default Mobile View */
+.menu-toggle-checkbox {
+    display: none;
+}
+
+.hamburger-label {
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    width: 44px; /* full touch target width */
+    height: 44px; /* full touch target height */
+    z-index: 1002;
+    margin-right: -10px; /* offset alignment slightly */
+}
+
+.hamburger-line {
+    display: block;
+    width: 26px; /* explicit line width */
+    height: 2px;
+    background-color: var(--luxury-white);
+    border-radius: 4px;
+    transition: var(--transition-fast);
+}
+
+.nav-menu {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    background-color: rgba(13, 13, 13, 0.98);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition-smooth);
+    z-index: 1001;
+}
+
 .nav-list {
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    gap: clamp(20px, 4vh, 30px);
     align-items: center;
 }
 
 .nav-link {
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: 0.78rem;
+    font-size: clamp(1rem, 5vw, 1.25rem);
     color: var(--luxury-muted-white);
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    padding: 8px 0;
+    padding: 12px 24px; /* Touch target */
+    display: block;
     position: relative;
+    transition: var(--transition-fast);
 }
 
 .nav-link::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
     width: 0;
     height: 1px;
     background-color: var(--luxury-gold);
     transition: var(--transition-fast);
+    transform: translateX(-50%);
 }
 
 .nav-link:hover, .nav-link.active {
@@ -414,29 +465,26 @@ h1 em, h2 em, h3 em {
 }
 
 .nav-link:hover::after, .nav-link.active::after {
-    width: 100%;
+    width: 80%;
 }
 
-.menu-toggle-checkbox {
-    display: none;
+/* Checked Hamburger State Trigger */
+.menu-toggle-checkbox:checked ~ .nav-menu {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.hamburger-label {
-    display: none;
-    cursor: pointer;
-    flex-direction: column;
-    gap: 6px;
-    width: 26px;
-    z-index: 1002;
+.menu-toggle-checkbox:checked ~ .hamburger-label .line-1 {
+    transform: translateY(8px) rotate(45deg);
 }
 
-.hamburger-line {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: var(--luxury-white);
-    border-radius: 4px;
-    transition: var(--transition-fast);
+.menu-toggle-checkbox:checked ~ .hamburger-label .line-2 {
+    opacity: 0;
+}
+
+.menu-toggle-checkbox:checked ~ .hamburger-label .line-3 {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* ==========================================================================
@@ -576,7 +624,7 @@ h1 em, h2 em, h3 em {
 }
 
 .hero-title {
-    font-size: 4rem;
+    font-size: clamp(2.2rem, 8vw, 4rem);
     line-height: 1.15;
     color: var(--luxury-white);
     margin-bottom: 20px;
@@ -592,9 +640,14 @@ h1 em, h2 em, h3 em {
 
 .hero-cta-group {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    flex-direction: column;
+    gap: 12px;
     margin-bottom: 40px;
+    width: 100%;
+}
+
+.hero-cta-group .btn {
+    width: 100%;
 }
 
 /* Hero ratings details inside card */
@@ -711,7 +764,7 @@ h1 em, h2 em, h3 em {
 
 .stat-number {
     font-family: var(--font-display);
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 2.8rem);
     font-weight: 700;
     color: var(--luxury-gold);
     line-height: 1;
@@ -738,14 +791,14 @@ h1 em, h2 em, h3 em {
    8. About Section
    ========================================================================== */
 .about-section {
-    padding: 120px 0;
+    padding: clamp(60px, 10vw, 120px) 0;
     background-color: var(--luxury-white);
 }
 
 .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    grid-template-columns: 1fr;
+    gap: 40px;
     align-items: center;
 }
 
@@ -754,6 +807,9 @@ h1 em, h2 em, h3 em {
     display: flex;
     flex-direction: column;
     gap: 35px;
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
 }
 
 .about-image-stack {
@@ -763,7 +819,8 @@ h1 em, h2 em, h3 em {
 
 .chef-image {
     width: 100%;
-    height: 480px;
+    height: auto;
+    max-height: 480px;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-dark);
     z-index: 2;
@@ -888,7 +945,7 @@ h1 em, h2 em, h3 em {
 .about-quote p {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 1.35rem;
+    font-size: clamp(1.1rem, 3vw, 1.35rem);
     color: var(--luxury-dark);
     margin-bottom: 8px;
     line-height: 1.4;
@@ -935,7 +992,7 @@ h1 em, h2 em, h3 em {
    9. Menu Section
    ========================================================================== */
 .menu-section {
-    padding: 120px 0;
+    padding: clamp(60px, 10vw, 120px) 0;
     background-color: var(--luxury-darker);
 }
 
@@ -996,8 +1053,8 @@ h1 em, h2 em, h3 em {
 /* Menu Grid */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
     width: 100%;
 }
 
@@ -1141,6 +1198,8 @@ h1 em, h2 em, h3 em {
     color: rgba(255, 255, 255, 0.3);
     cursor: pointer;
     transition: var(--transition-fast);
+    padding: 12px; /* Expanded touch target size */
+    margin: -12px;
 }
 
 .wishlist-btn:hover, .wishlist-btn.active {
@@ -1173,15 +1232,14 @@ h1 em, h2 em, h3 em {
    10. Gallery Section
    ========================================================================== */
 .gallery-section {
-    padding: 120px 0;
+    padding: clamp(60px, 10vw, 120px) 0;
     background-color: var(--luxury-white);
 }
 
 /* Grid masonry styles */
 .gallery-masonry {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 240px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 15px;
     margin-top: 40px;
 }
@@ -1192,6 +1250,8 @@ h1 em, h2 em, h3 em {
     overflow: hidden;
     box-shadow: var(--shadow-soft);
     cursor: pointer;
+    aspect-ratio: 4 / 3;
+    height: auto;
 }
 
 .gallery-image {
@@ -1266,151 +1326,12 @@ h1 em, h2 em, h3 em {
     transform: translateY(0);
 }
 
-/* ==========================================================================
-   11. Testimonials Section
-   ========================================================================== */
-.testimonials-section {
-    padding: 120px 0;
-    background-color: var(--luxury-dark);
-    position: relative;
-    overflow: hidden;
-}
-
-.testimonials-section::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -20%;
-    width: 60%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(139, 26, 26, 0.1) 0%, rgba(0,0,0,0) 70%);
-    pointer-events: none;
-}
-
-.testimonials-carousel-wrapper {
-    max-width: 800px;
-    margin: 40px auto 0 auto;
-    position: relative;
-}
-
-.testimonials-track {
-    display: flex;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    width: 100%;
-}
-
-.testimonial-card {
-    min-width: 100%;
-    flex-shrink: 0;
-    text-align: center;
-    padding: 0 40px;
-    box-sizing: border-box;
-}
-
-.testimonial-stars {
-    color: var(--luxury-gold);
-    font-size: 1.15rem;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-}
-
-.testimonial-quote {
-    font-family: var(--font-display);
-    font-size: 1.7rem;
-    line-height: 1.5;
-    color: var(--luxury-white);
-    margin-bottom: 30px;
-    font-weight: 400;
-}
-
-.testimonial-author {
-    display: inline-flex;
-    align-items: center;
-    gap: 15px;
-    text-align: left;
-}
-
-.author-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    color: white;
-    font-size: 0.9rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.author-info strong {
-    display: block;
-    color: var(--luxury-white);
-    font-size: 0.9rem;
-}
-
-.author-info span {
-    font-size: 0.72rem;
-    color: var(--luxury-muted-white);
-}
-
-/* Controls layout */
-.carousel-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-    margin-top: 40px;
-}
-
-.carousel-btn {
-    width: 44px;
-    height: 44px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--luxury-muted-white);
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition-fast);
-}
-
-.carousel-btn svg {
-    width: 20px;
-    height: 20px;
-}
-
-.carousel-btn:hover {
-    border-color: var(--luxury-gold);
-    color: var(--luxury-gold);
-    background-color: rgba(255, 255, 255, 0.02);
-}
-
-.carousel-dots {
-    display: flex;
-    gap: 8px;
-}
-
-.dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.25);
-    cursor: pointer;
-    transition: var(--transition-fast);
-}
-
-.dot.active {
-    background-color: var(--luxury-gold);
-    transform: scale(1.3);
-}
 
 /* ==========================================================================
    12. Contact Section & Forms
    ========================================================================== */
 .contact-section {
-    padding: 120px 0;
+    padding: clamp(60px, 10vw, 120px) 0;
     background-color: var(--luxury-white);
     position: relative;
 }
@@ -1428,8 +1349,8 @@ h1 em, h2 em, h3 em {
 
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 80px;
+    grid-template-columns: 1fr;
+    gap: 40px;
     margin-top: 40px;
 }
 
@@ -1534,7 +1455,7 @@ h1 em, h2 em, h3 em {
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: var(--radius-lg);
-    padding: 50px;
+    padding: clamp(20px, 5vw, 50px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
 }
 
@@ -1543,7 +1464,7 @@ h1 em, h2 em, h3 em {
 }
 
 .form-title {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     margin-bottom: 8px;
 }
 
@@ -1561,7 +1482,7 @@ h1 em, h2 em, h3 em {
 
 .form-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 20px;
 }
 
@@ -1643,7 +1564,7 @@ h1 em, h2 em, h3 em {
    ========================================================================== */
 .cta-banner-section {
     position: relative;
-    padding: 120px 0;
+    padding: clamp(60px, 10vw, 120px) 0;
     text-align: center;
     overflow: hidden;
     color: var(--luxury-white);
@@ -1679,7 +1600,7 @@ h1 em, h2 em, h3 em {
 }
 
 .cta-banner-title {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 7vw, 3.5rem);
     color: var(--luxury-white);
     margin-bottom: 20px;
     line-height: 1.15;
@@ -1704,8 +1625,8 @@ h1 em, h2 em, h3 em {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 0.8fr 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1fr;
+    gap: 30px;
     margin-bottom: 60px;
 }
 
@@ -2200,150 +2121,15 @@ h1 em, h2 em, h3 em {
 }
 
 /* ==========================================================================
-   17. Responsive Media Queries
+   17. Responsive Media Queries (Mobile-First Approach)
    ========================================================================== */
 
-/* Large Tablets (max-width: 1024px) */
-@media screen and (max-width: 1024px) {
-    .container {
-        padding: 0 24px;
-    }
-    
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 60px;
-    }
-    
-    .about-visual {
-        max-width: 550px;
-        margin: 0 auto;
-    }
-    
-    .menu-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-    
-    .gallery-masonry {
-        grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: 200px;
-    }
-    
-    .gallery-wide {
-        grid-column: span 2;
-    }
-    
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
-    }
-    
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-    
-    .lightbox-prev {
-        left: -50px;
-    }
-    
-    .lightbox-next {
-        right: -50px;
-    }
-}
+/* ==========================================
+   Mobile-Only Styles (max-width: 767px)
+   ========================================== */
+@media screen and (max-width: 767px) {
 
-/* Mobile Devices (max-width: 768px) */
-@media screen and (max-width: 768px) {
-    :root {
-        --header-height: 70px;
-    }
-
-    .section-title {
-        font-size: 2.2rem;
-    }
-    
-    .hero-title {
-        font-size: 2.6rem;
-    }
-    
-    .hero-description {
-        font-size: 0.95rem;
-    }
-    
-    .hero-glass-card {
-        padding: 40px 24px 30px 24px;
-    }
-    
-    .hero-cta-group {
-        flex-direction: column;
-        gap: 12px;
-        width: 100%;
-    }
-    
-    .hero-cta-group .btn {
-        width: 100%;
-    }
-    
-    .hero-meta-row {
-        gap: 15px;
-    }
-    
-    /* Hamburger Menu hack layout overrides */
-    .hamburger-label {
-        display: flex;
-    }
-    
-    .header-reserve-btn {
-        margin-right: 20px;
-        padding: 8px 16px;
-        font-size: 0.7rem;
-    }
-    
-    .nav-menu {
-        position: fixed;
-        top: var(--header-height);
-        left: 0;
-        width: 100%;
-        height: calc(100vh - var(--header-height));
-        background-color: rgba(13, 13, 13, 0.98);
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transform: translateY(-100%);
-        opacity: 0;
-        pointer-events: none;
-        transition: var(--transition-smooth);
-        z-index: 1001;
-    }
-    
-    .nav-list {
-        flex-direction: column;
-        gap: 30px;
-    }
-    
-    .nav-link {
-        font-size: 1.15rem;
-    }
-    
-    .menu-toggle-checkbox:checked ~ .nav-menu {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
-    }
-    
-    /* Hamburger to X Transform */
-    .menu-toggle-checkbox:checked ~ .hamburger-label .line-1 {
-        transform: translateY(8px) rotate(45deg);
-    }
-    .menu-toggle-checkbox:checked ~ .hamburger-label .line-2 {
-        opacity: 0;
-    }
-    .menu-toggle-checkbox:checked ~ .hamburger-label .line-3 {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-    
-    /* Trust Bar Scroll Flow */
+    /* Stats Bar scroll flow */
     .stats-container {
         overflow-x: auto;
         justify-content: flex-start;
@@ -2352,17 +2138,20 @@ h1 em, h2 em, h3 em {
         padding: 0 20px;
         scrollbar-width: none;
     }
+    
     .stats-container::-webkit-scrollbar {
         display: none;
     }
+    
     .stat-item {
         min-width: 150px;
         flex-shrink: 0;
     }
+    
     .stat-divider {
         display: none;
     }
-    
+
     /* Scrollable menu tabs strip on mobile */
     .tab-headers-container {
         max-width: 100%;
@@ -2374,57 +2163,210 @@ h1 em, h2 em, h3 em {
         scrollbar-width: none;
         -webkit-overflow-scrolling: touch;
     }
+    
     .tab-headers-container::-webkit-scrollbar {
         display: none;
     }
+    
     .tab-label {
         padding: 8px 16px;
         font-size: 0.72rem;
         flex-shrink: 0;
     }
     
-    .menu-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .gallery-masonry {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 150px;
-    }
-    
-    .testimonial-card {
-        padding: 0 15px;
-    }
-    .testimonial-quote {
-        font-size: 1.25rem;
-    }
-    
-    .reservation-form-wrapper {
-        padding: 30px 20px;
-    }
-    
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-    
+    /* Pre-footer CTA Title scaling */
     .cta-banner-title {
         font-size: 2.2rem;
     }
-    
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-    
+
+    /* Lightbox position adjustments for smaller screens */
     .lightbox-prev, .lightbox-next {
         font-size: 2rem;
     }
-    .lightbox-prev { left: -10px; }
-    .lightbox-next { right: -10px; }
+    .lightbox-prev { left: 10px; }
+    .lightbox-next { right: 10px; }
     .lightbox-close { top: -40px; right: 10px; }
     
     #toast-container {
         left: 20px;
         right: 20px;
         bottom: 20px;
+    }
+}
+
+/* ==========================================
+   Mobile breakpoint (max-width: 480px)
+   ========================================== */
+@media screen and (max-width: 480px) {
+    /* Stack CTA buttons vertically in hero */
+    .hero-cta-group {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+    
+    .hero-cta-group .btn {
+        width: 100%;
+    }
+}
+
+/* ==========================================
+   Tablet Breakpoint (min-width: 768px)
+   ========================================== */
+@media screen and (min-width: 768px) {
+    /* Hero: inline button layout */
+    .hero-cta-group {
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+        width: auto;
+    }
+    
+    .hero-cta-group .btn {
+        width: auto;
+    }
+
+    /* Menu Grid: 2 columns */
+    .menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    /* Reservation form row: 2 columns */
+    .form-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Footer: 2 columns */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+/* ==========================================
+   Laptop Breakpoint (min-width: 1024px)
+   ========================================== */
+@media screen and (min-width: 1024px) {
+    :root {
+        --header-height: 90px;
+    }
+
+    /* Navbar: Horizontal menu */
+    .hamburger-label {
+        display: none;
+    }
+    
+    .nav-menu {
+        position: static;
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        border-top: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+        z-index: auto;
+        transition: none;
+    }
+    
+    .nav-list {
+        flex-direction: row;
+        gap: 30px;
+    }
+    
+    .nav-link {
+        font-size: 0.78rem;
+        padding: 8px 0;
+        display: inline;
+    }
+    
+    .nav-link::after {
+        left: 0;
+        transform: none;
+    }
+    
+    .nav-link:hover::after, .nav-link.active::after {
+        width: 100%;
+    }
+    
+    .header-reserve-btn {
+        padding: 10px 22px;
+        font-size: 0.75rem;
+        margin-right: 30px;
+    }
+
+    /* About Section: 2 columns */
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+    }
+    
+    .about-visual {
+        max-width: none;
+        margin: 0;
+    }
+    
+    .chef-image {
+        height: 480px;
+        max-height: none;
+    }
+    
+    /* Menu Section: 3 columns */
+    .menu-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 30px;
+    }
+    
+    /* Gallery Section: Restore original masonry columns & row heights */
+    .gallery-masonry {
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 240px;
+    }
+    
+    .gallery-item {
+        aspect-ratio: auto;
+        height: 100%;
+    }
+    
+    .gallery-tall {
+        grid-row: span 2;
+    }
+    
+    .gallery-wide {
+        grid-column: span 2;
+    }
+    
+    /* Contact / Reservation Section: 2 columns */
+    .contact-grid {
+        grid-template-columns: 1fr 1.1fr;
+        gap: 80px;
+    }
+    
+    /* Footer Section: 4 columns */
+    .footer-grid {
+        grid-template-columns: 1.5fr 0.8fr 1fr 1fr;
+        gap: 40px;
+    }
+    
+    /* Lightbox positioning adjustments */
+    .lightbox-prev {
+        left: -80px;
+    }
+    
+    .lightbox-next {
+        right: -80px;
+    }
+}
+
+/* ==========================================
+   Desktop Breakpoint (min-width: 1440px)
+   ========================================== */
+@media screen and (min-width: 1440px) {
+    .container {
+        max-width: 1320px;
     }
 }
