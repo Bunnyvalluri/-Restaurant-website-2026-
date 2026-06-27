@@ -2143,6 +2143,13 @@ h1 em, h2 em, h3 em {
         display: none;
     }
 
+    /* Hero section mobile spacing and centering */
+    .hero-section {
+        min-height: 580px;
+        padding-top: calc(var(--header-height) + 20px);
+        padding-bottom: 40px;
+    }
+
     /* Award Badge stacked layout */
     .hero-award-badge {
         flex-direction: column;
